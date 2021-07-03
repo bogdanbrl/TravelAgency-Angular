@@ -1,0 +1,25 @@
+<div>
+
+</div>
+
+<mat-card class="card-container">
+  <form [formGroup]="form" class="form-container">
+    <mat-form-field appearance="standard">
+      <mat-label>Country name</mat-label>
+      <input matInput placeholder="Placeholder" formControlName="name">
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+      <mat-label>Continent</mat-label>
+      <mat-select [(ngModel)]="selectedContinent" formControlName="continent">
+        <mat-option *ngFor="let continent of continents" [value]="continent">
+          {{continent.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p> Selected continent: {{ selectedContinent?.name }} </p>
+  </form>
+  <mat-card-actions>
+    <button mat-button (click)="onSubmit()">SAVE</button>
+    <button mat-button>DELETE</button>
+  </mat-card-actions>
+</mat-card>

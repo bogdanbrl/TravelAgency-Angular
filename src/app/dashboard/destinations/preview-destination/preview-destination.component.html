@@ -1,0 +1,15 @@
+<mat-card class="card-container" *ngIf="destination">
+
+  <mat-card-header>
+    <mat-card-title>{{ destination.name }}</mat-card-title>
+    <mat-card-subtitle>{{ destination.country?.name }},
+      {{ destination.country?.continent?.name }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>
+      {{ destination.description }}
+    </p>
+  </mat-card-content>
+
+</mat-card>

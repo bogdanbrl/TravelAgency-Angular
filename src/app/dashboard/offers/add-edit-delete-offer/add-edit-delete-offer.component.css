@@ -1,0 +1,8 @@
+.card-container {
+  margin: 16px;
+  display: table;
+}
+
+.form-container {
+  display: grid;
+}

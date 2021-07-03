@@ -1,0 +1,44 @@
+Homepage
+  -search(nume, pret)
+  -lista oferte
+  -lista cu destinatii
+  -descriere aplicatie(About Us)
+
+Detalii oferta
+  -imagini
+  -titlu
+  -descriere
+  -pret
+  -componenta Booking
+      -redirectionare la componenta de Login
+      -redirectionare spre pagina de finalizare
+
+Pagina de Contact
+  -nume, prenume, mesaj, buton de SEND
+
+Contul Meu(My Account)
+  -posibiliate de Logout
+  -nume
+  -prenume
+  -nr tel
+  -email
+  *-istoric oferte *
+
+Modul Autentificare  OK
+  -Login
+  -Register
+  -Forgot Password
+
+Modul Administrare
+  -lista cu oferte (adugare, editare, stergere)
+  -lista cu destinatii (adugare, editare, stergere)
+  -lista cu clienti
+  ***-lista cu rezervari ***
+
+
+--behavior subject--
+--Observable--
+
+
+
+
