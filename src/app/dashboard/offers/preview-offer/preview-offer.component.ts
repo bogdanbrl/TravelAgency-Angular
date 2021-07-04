@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {OfferModel} from "../../../models/offer-model";
+import {BuyOfferComponent} from "../../../buy-offer/buy-offer.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-preview-offer',
@@ -9,10 +11,14 @@ import {OfferModel} from "../../../models/offer-model";
 export class PreviewOfferComponent implements OnInit {
 
   @Input() offer: any = undefined;
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
     console.log(this.offer);
+  }
+
+  onBuy():void {
+    let dialogRef = this.dialog.open(BuyOfferComponent, {height:'300px', width:'400px', data: {offer: this.offer} });
   }
 
 }

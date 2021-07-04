@@ -29,6 +29,8 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatOptionModule} from "@angular/material/core";
 import { ListCountriesComponent } from './dashboard/destinations/list-countries/list-countries.component';
 import { CountryPreviewComponent } from './dashboard/destinations/country-preview/country-preview.component';
+import { BuyOfferComponent } from './buy-offer/buy-offer.component';
+import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { CountryPreviewComponent } from './dashboard/destinations/country-previe
     MyAccountComponent,
     AddEditDeleteCountryComponent,
     ListCountriesComponent,
-    CountryPreviewComponent
+    CountryPreviewComponent,
+    BuyOfferComponent
   ],
   imports: [
     BrowserModule,
@@ -63,9 +66,11 @@ import { CountryPreviewComponent } from './dashboard/destinations/country-previe
     MatCardModule,
     MatButtonModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    MatDialogModule,
   ],
-  providers: [],
+  entryComponents: [BuyOfferComponent],
+  providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {OfferModel} from "../../models/offer-model";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 
 @Injectable({
@@ -73,6 +73,8 @@ export class OffersService {
     return this.http.get(`${environment.apiUrl}/offers/getOfferById/${offerId}`);
   }
 
-
+  public buyOffer(offerId: number, userId: number) {
+    return this.http.post(`${environment.apiUrl}/offers/buyOffer`, {offerId: offerId, userId: userId});
+  }
 
 }
