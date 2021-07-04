@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {DestinationsService} from "../destinations.service";
 import {DestinationModel} from "../../../models/destination-model";
 
@@ -9,11 +9,27 @@ import {DestinationModel} from "../../../models/destination-model";
 })
 export class ListDestinationsComponent implements OnInit {
 
+  @Output() onSelect: EventEmitter<number>;
   destinations: Array<DestinationModel> = [];
-  constructor(private destinationsService: DestinationsService) { }
+
+  constructor(private destinationsService: DestinationsService) {
+    this.onSelect = new EventEmitter();
+  }
 
   ngOnInit(): void {
-    this.destinations = this.destinationsService.get();
+    this.destinationsService.get().subscribe((response: any) => {
+        console.log(response);
+        this.destinations = response;
+      },
+      (error) => {
+        console.log('error');
+        console.log(error);
+      });
   }
+
+  onSelectDestination(destinationId: number){
+    this.onSelect.emit(destinationId);
+  }
+
 
 }

@@ -33,7 +33,13 @@ export class AddEditDeleteOfferComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.setupForm();
-    this.destinations = this.destinationsService.get();
+    this.destinationsService.get().subscribe((response: any) => {
+        this.destinations = response;
+      },
+      (error) => {
+        console.log('error');
+        console.log(error);
+      });
   }
 
   private setupForm(): void {
@@ -90,7 +96,7 @@ export class AddEditDeleteOfferComponent implements OnInit, OnChanges {
   }
 
   onDelete(): void {
-    this.offersService.delete(this.form.value.id).subscribe((response:any) => {
+    this.offersService.delete(this.form.value.id).subscribe((response: any) => {
       console.log(response);
     }, (error) => {
       console.log('error from server');

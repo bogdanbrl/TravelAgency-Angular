@@ -1,5 +1,6 @@
 <div>
-  <app-preview-destination *ngFor="let destination of destinations" [destination]="destination">
+  <app-preview-destination *ngFor="let destination of destinations" [destination]="destination"
+                           (click)="onSelectDestination(destination.id)">
 
   </app-preview-destination>
 </div>

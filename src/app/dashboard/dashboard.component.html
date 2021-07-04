@@ -7,10 +7,10 @@
 
 <app-list-offers (onSelect)="onReceiveOffer($event)"></app-list-offers>
 
-<app-add-edit-delete-country></app-add-edit-delete-country>
+<app-add-edit-delete-country [country]="selectedCountry"></app-add-edit-delete-country>
 
-<app-list-countries></app-list-countries>
+<app-list-countries (onSelect)="onReceiveCountry($event)"></app-list-countries>
 
-<app-add-edit-delete-destination></app-add-edit-delete-destination>
+<app-add-edit-delete-destination [destination]="selectedDestination"></app-add-edit-delete-destination>
 
-<app-list-destinations></app-list-destinations>
+<app-list-destinations (onSelect)="onReceiveDestination($event)"></app-list-destinations>

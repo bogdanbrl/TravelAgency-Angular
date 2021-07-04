@@ -32,7 +32,15 @@ export class AddEditDeleteDestinationComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.setupForm();
-    this.countries = this.destinationsService.getCountries();
+    // this.countries = this.destinationsService.getCountries();
+    this.destinationsService.getCountries().subscribe((response:any) => {
+      console.log(response);
+      this.countries = response;
+      },
+      (error) => {
+      console.log('error');
+      console.log(error);
+      });
   }
 
   private setupForm(): void {
@@ -60,9 +68,23 @@ export class AddEditDeleteDestinationComponent implements OnInit, OnChanges {
   onSubmit(): void {
     console.log(this.form.value);
     if (this.form.valid) {
-      //TODO: connect with the REST API
+      if (this.form.controls['id'].value == null) {
+        this.destinationsService.create(this.form.value).subscribe((response: any) => {
+          console.log(response);
+        }, (error) => {
+          console.log('error from server');
+          console.log(error);
+        });
+      } else {
+        this.destinationsService.update(this.form.value).subscribe((response: any) => {
+          console.log(response);
+        }, (error) => {
+          console.log('error from server');
+          console.log(error);
+        });
+      }
     } else {
-      //TODO: inform user about errors
+      alert('The destination form is invalid!');
     }
   }
 

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ClientsService} from "./clients/clients.service";
 import {OffersService} from "./offers/offers.service";
+import {DestinationsService} from "./destinations/destinations.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -11,8 +12,12 @@ export class DashboardComponent implements OnInit {
 
   selectedClient: any = undefined;
   selectedOffer: any = undefined;
+  selectedDestination: any = undefined;
+  selectedCountry: any = undefined;
 
-  constructor(private clientsService: ClientsService, private offersService: OffersService) {
+  constructor(private clientsService: ClientsService,
+              private offersService: OffersService,
+              private destinationsService: DestinationsService) {
   }
 
   ngOnInit(): void {
@@ -52,5 +57,28 @@ export class DashboardComponent implements OnInit {
       });
   }
 
+  onReceiveDestination(id: number) {
+    this.destinationsService.getById(id).subscribe((response: any) => {
+        console.log('response');
+        console.log(response);
+        this.selectedDestination = response;
+      },
+      (error) => {
+        console.log('error');
+        console.log(error);
+      });
+  }
+
+  onReceiveCountry(id: number) {
+    this.destinationsService.getCountryById(id).subscribe((response: any) => {
+        console.log('response');
+        console.log(response);
+        this.selectedCountry = response;
+      },
+      (error) => {
+        console.log('error');
+        console.log(error);
+      });
+  }
 
 }

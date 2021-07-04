@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ContinentModel} from "../../../../models/continent-model";
 import {Constants} from "../../../../utils/constants";
 import {DestinationsService} from "../../destinations.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {CountryModel} from "../../../../models/country-model";
 
 @Component({
   selector: 'app-add-edit-delete-country',
@@ -11,6 +12,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 })
 export class AddEditDeleteCountryComponent implements OnInit {
 
+  @Input() country: CountryModel | undefined;
   continents: Array<ContinentModel> = [];
   selectedContinent: ContinentModel | undefined ;
   form: FormGroup;

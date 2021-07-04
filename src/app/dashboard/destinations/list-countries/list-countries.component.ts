@@ -17,7 +17,14 @@ export class ListCountriesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.countries = this.destinationsService.getCountries();
+    this.destinationsService.getCountries().subscribe((response: any) => {
+        console.log(response);
+        this.countries = response;
+      },
+      (error) => {
+        console.log('error');
+        console.log(error);
+      });
   }
 
   onSelectCountry(id: number) {
