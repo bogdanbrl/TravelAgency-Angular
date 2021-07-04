@@ -9,7 +9,7 @@ import {ClientModel} from "../../../models/client-model";
 })
 export class AddEditDeleteClientComponent implements OnInit, OnChanges {
 
-  @Input() client: ClientModel;
+  @Input() client: ClientModel | undefined;
   form: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
@@ -18,12 +18,10 @@ export class AddEditDeleteClientComponent implements OnInit, OnChanges {
       firstName: ['', Validators.minLength(3)],
       lastName: ['', Validators.minLength(3)],
       email: ['', Validators.email],
+      username: ['', Validators.minLength(3)],
       password: ['', Validators.minLength(6)],
       retypePassword: ['', Validators.minLength(6)],
     });
-    this.client = {
-      id: 0, firstName: '', lastName: '', email: '', password: '', retypePassword: ''
-    }
 
   }
 
@@ -37,6 +35,7 @@ export class AddEditDeleteClientComponent implements OnInit, OnChanges {
       firstName: ['', Validators.minLength(3)],
       lastName: ['', Validators.minLength(3)],
       email: ['', Validators.email],
+      username: ['', Validators.minLength(3)],
       password: ['', Validators.minLength(6)],
       retypePassword: ['', Validators.minLength(6)],
     });
@@ -51,6 +50,7 @@ export class AddEditDeleteClientComponent implements OnInit, OnChanges {
         firstName: [this.client.firstName, Validators.minLength(3)],
         lastName: [this.client.lastName, Validators.minLength(3)],
         email: [this.client.email, Validators.email],
+        username: [this.client.username, Validators.minLength(3)],
         password: [this.client.password, Validators.minLength(6)],
         retypePassword: [this.client.retypePassword, Validators.minLength(6)],
       });

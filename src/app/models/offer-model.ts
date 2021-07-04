@@ -4,4 +4,5 @@ export interface OfferModel {
   title: string;
   description: string;
   price: number;
+  contactNumber: string;
 }

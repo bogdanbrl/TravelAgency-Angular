@@ -16,6 +16,7 @@ export class ClientsService {
         firstName: 'User ' + i,
         lastName: 'Usr',
         email: `user${i}@email.com`,
+        username: 'abc' + i,
         password: '',
         retypePassword: ''
       };

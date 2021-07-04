@@ -9,7 +9,7 @@ import {OfferModel} from "../../../models/offer-model";
 })
 export class AddEditDeleteOfferComponent implements OnInit, OnChanges {
 
-  @Input() offer: OfferModel;
+  @Input() offer: OfferModel | undefined;
   form: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
@@ -18,11 +18,9 @@ export class AddEditDeleteOfferComponent implements OnInit, OnChanges {
       images: [[''], Validators.compose([Validators.required, Validators.minLength(1)])],
       title: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
       description: ['', Validators.compose([Validators.required, Validators.minLength(15)])],
-      price: [0, Validators.compose([Validators.required, Validators.min(0)])]
+      price: [0, Validators.compose([Validators.required, Validators.min(0)])],
+      contactNumber: ['', Validators.compose([Validators.required, Validators.minLength(10)])]
     });
-    this.offer = {
-      id: 0, images: [], title: '', description: '', price: 0
-    }
 
   }
 
@@ -36,7 +34,8 @@ export class AddEditDeleteOfferComponent implements OnInit, OnChanges {
       images: [[''], Validators.compose([Validators.required, Validators.minLength(1)])],
       title: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
       description: ['', Validators.compose([Validators.required, Validators.minLength(15)])],
-      price: [0, Validators.compose([Validators.required, Validators.min(0)])]
+      price: [0, Validators.compose([Validators.required, Validators.min(0)])],
+      contactNumber: ['', Validators.compose([Validators.required, Validators.minLength(10)])]
     })
   }
 
@@ -49,7 +48,8 @@ export class AddEditDeleteOfferComponent implements OnInit, OnChanges {
         images: [this.offer.images, Validators.compose([Validators.required, Validators.minLength(1)])],
         title: [this.offer.title, Validators.compose([Validators.required, Validators.minLength(6)])],
         description: [this.offer.description, Validators.compose([Validators.required, Validators.minLength(15)])],
-        price: [this.offer.price, Validators.compose([Validators.required, Validators.min(0)])]
+        price: [this.offer.price, Validators.compose([Validators.required, Validators.min(0)])],
+        contactNumber: [this.offer.contactNumber, Validators.compose([Validators.required, Validators.minLength(10)])]
       })
     }
   }

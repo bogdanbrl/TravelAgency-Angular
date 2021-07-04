@@ -3,6 +3,7 @@ export interface ClientModel {
   lastName: string;
   firstName: string;
   email: string;
+  username: string;
   password: string;
   retypePassword: string;
 }

@@ -27,6 +27,8 @@ import { MyAccountComponent } from './my-account/my-account.component';
 import { AddEditDeleteCountryComponent } from './dashboard/destinations/add-edit-delete-destination/add-edit-delete-country/add-edit-delete-country.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatOptionModule} from "@angular/material/core";
+import { ListCountriesComponent } from './dashboard/destinations/list-countries/list-countries.component';
+import { CountryPreviewComponent } from './dashboard/destinations/country-preview/country-preview.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import {MatOptionModule} from "@angular/material/core";
     ListClientsComponent,
     PreviewClientComponent,
     MyAccountComponent,
-    AddEditDeleteCountryComponent
+    AddEditDeleteCountryComponent,
+    ListCountriesComponent,
+    CountryPreviewComponent
   ],
   imports: [
     BrowserModule,
