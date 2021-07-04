@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {ClientModel} from "../../models/client-model";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -7,27 +9,31 @@ import {ClientModel} from "../../models/client-model";
 export class ClientsService {
 
   private clients: Array<ClientModel> = [];
-  private id: number = 1;
+  // private id: number = 1;
 
-  constructor() {
-    for (let i = 0; i < 5; i++) {
-      let client: ClientModel = {
-        id: 0,
-        firstName: 'User ' + i,
-        lastName: 'Usr',
-        email: `user${i}@email.com`,
-        username: 'abc' + i,
-        password: '',
-        retypePassword: ''
-      };
-      this.create(client);
-    }
+  constructor(private http:HttpClient) {
+    // for (let i = 0; i < 5; i++) {
+    //   let client: ClientModel = {
+    //     id: 0,
+    //     firstName: 'User ' + i,
+    //     lastName: 'Usr',
+    //     email: `user${i}@email.com`,
+    //     username: 'abc' + i,
+    //     password: '',
+    //     retypePassword: ''
+    //   };
+    //   this.create(client);
+    // }
+
+
   }
 
   public create(data: ClientModel) {
-    data.id = this.id;
-    this.id++;
-    this.clients.push(data);
+    // data.id = this.id;
+    // this.id++;
+    // this.clients.push(data);
+
+    return this.http.post(`${environment.apiUrl}/user/addUser`, data);
   }
 
   public update(data: ClientModel) {

@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {CountryModel} from "../../../models/country-model";
 
 @Component({
-  selector: 'app-country-preview',
+  selector: 'app-preview-country',
   templateUrl: './country-preview.component.html',
   styleUrls: ['./country-preview.component.css']
 })

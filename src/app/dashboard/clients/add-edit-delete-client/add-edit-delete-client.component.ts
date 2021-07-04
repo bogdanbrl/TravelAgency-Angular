@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ClientModel} from "../../../models/client-model";
+import {ClientsService} from "../clients.service";
 
 @Component({
   selector: 'app-add-edit-delete-client',
@@ -12,7 +13,8 @@ export class AddEditDeleteClientComponent implements OnInit, OnChanges {
   @Input() client: ClientModel | undefined;
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private clientsService: ClientsService) {
     this.form = formBuilder.group({
       id: [null],
       firstName: ['', Validators.minLength(3)],
@@ -60,7 +62,22 @@ export class AddEditDeleteClientComponent implements OnInit, OnChanges {
   onSubmit(): void {
     console.log(this.form.value);
     if (this.form.valid) {
-      //TODO: connect with the REST API
+      if (this.form.controls['id'].value == null) {
+        this.clientsService.create(this.form.value).subscribe((response:any) => {
+          console.log(response);
+        }, (error) => {
+          console.log('error from server');
+          console.log(error);
+        });
+      } else {
+        // this.clientsService.update(this.form.value).subscribe((response:any) => {
+        //   console.log(response);
+        // }, (error) => {
+        //   console.log('error from server');
+        //   console.log(error);
+        // });
+      }
+
     } else {
       //TODO: inform user about errors
     }
