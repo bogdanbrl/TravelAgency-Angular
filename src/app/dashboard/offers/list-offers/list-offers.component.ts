@@ -17,7 +17,17 @@ export class ListOffersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.offers = this.offersService.get();
+    // this.offers = this.offersService.get();
+
+    this.offersService.get().subscribe((response: any) => {
+        console.log('response');
+        console.log(response);
+        this.offers = response;
+      },
+      (error) => {
+        console.log('error');
+        console.log(error);
+      });
   }
 
   onSelectOffer(id: number) {

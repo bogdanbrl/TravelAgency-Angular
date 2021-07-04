@@ -17,7 +17,22 @@ export class ListClientsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.clients = this.clientsService.get();
+    // this.clients = this.clientsService.get();
+    this.clientsService.get().subscribe((response: any) => {
+      for (let i =0; i < response.length; i++) {
+        let client: ClientModel = {
+          id: response[i].id,
+          firstName: response[i].firstName,
+          lastName: response[i].lastName,
+          username: response[i].username,
+          email: response[i].email,
+          retypePassword: '',
+          password: ''
+        };
+        this.clients.push(client);
+      }
+      },
+      (error) => {});
   }
 
   onSelectClient(id: number) {

@@ -1,8 +1,9 @@
 export interface OfferModel {
   id: number;
-  images: Array<string>;
+  imageUrl: string;
   title: string;
   description: string;
-  price: number;
+  pricePerNight: number;
   contactNumber: string;
+  destinationId: number;
 }

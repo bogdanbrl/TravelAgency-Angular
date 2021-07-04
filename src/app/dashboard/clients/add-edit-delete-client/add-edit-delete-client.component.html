@@ -36,7 +36,7 @@
   </mat-card-content>
   <mat-card-actions>
     <button mat-button (click)="onSubmit()">SAVE</button>
-    <button mat-button>DELETE</button>
+    <button mat-button (click)="onDelete()" *ngIf="form.controls['id'].value">DELETE</button>
   </mat-card-actions>
 </mat-card>
 

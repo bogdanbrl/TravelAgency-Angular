@@ -37,32 +37,38 @@ export class ClientsService {
   }
 
   public update(data: ClientModel) {
-    this.clients.forEach((client: ClientModel, index) => {
-      if (client.id == data.id) {
-        this.clients[index] = data;
-      }
-    })
+    return this.http.put(`${environment.apiUrl}/user/editUser`, data);
+
+    // this.clients.forEach((client: ClientModel, index) => {
+    //   if (client.id == data.id) {
+    //     this.clients[index] = data;
+    //   }
+    // })
   }
 
   public delete(clientId: number) {
-    this.clients = this.clients.filter((client: ClientModel) => client.id != clientId);
+    // this.clients = this.clients.filter((client: ClientModel) => client.id != clientId);
+    return this.http.delete(`${environment.apiUrl}/user/deleteUser/${clientId}`);
   }
 
-  public get(): Array<ClientModel> {
-    return this.clients;
+  public get() {
+    // return this.clients;
+    return this.http.get(`${environment.apiUrl}/user/getUsers`);
   }
 
-  public getById(clientId: number): ClientModel | undefined {
+  public getById(clientId: number) {
 
     // return this.clients.filter((client: ClientModel) => client.id == clientId)[0];
 
-    let result: any = undefined;
-    this.clients.forEach((client: ClientModel) => {
-      if (client.id == clientId) {
-        result = client;
-      }
-    })
-    return result;
+    // let result: any = undefined;
+    // this.clients.forEach((client: ClientModel) => {
+    //   if (client.id == clientId) {
+    //     result = client;
+    //   }
+    // })
+    // return result;
+
+    return this.http.get(`${environment.apiUrl}/user/getUserById/${clientId}`);
   }
 
 

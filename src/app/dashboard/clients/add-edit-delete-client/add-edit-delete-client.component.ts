@@ -70,17 +70,26 @@ export class AddEditDeleteClientComponent implements OnInit, OnChanges {
           console.log(error);
         });
       } else {
-        // this.clientsService.update(this.form.value).subscribe((response:any) => {
-        //   console.log(response);
-        // }, (error) => {
-        //   console.log('error from server');
-        //   console.log(error);
-        // });
+        this.clientsService.update(this.form.value).subscribe((response:any) => {
+          console.log(response);
+        }, (error) => {
+          console.log('error from server');
+          console.log(error);
+        });
       }
 
     } else {
-      //TODO: inform user about errors
+      alert('The user form is invalid!');
     }
+  }
+
+  onDelete(): void {
+    this.clientsService.delete(this.form.value.id).subscribe((response:any) => {
+      console.log(response);
+    }, (error) => {
+      console.log('error from server');
+      console.log(error);
+    });
   }
 
 }

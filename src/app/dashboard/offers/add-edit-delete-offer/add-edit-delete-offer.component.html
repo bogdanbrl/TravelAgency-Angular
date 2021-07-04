@@ -8,7 +8,7 @@
     <form [formGroup]="form" class="form-container">
       <mat-form-field appearance="standard">
         <mat-label>Images</mat-label>
-        <input placeholder="https://abc.png" matInput formControlName="images">
+        <input placeholder="https://abc.png" matInput formControlName="imageUrl">
       </mat-form-field>
       <mat-form-field appearance="standard">
         <mat-label>Title</mat-label>
@@ -20,16 +20,24 @@
       </mat-form-field>
       <mat-form-field appearance="standard">
         <mat-label>Price</mat-label>
-        <input placeholder="Price" matInput type="number" formControlName="price">
+        <input placeholder="Price" matInput type="number" formControlName="pricePerNight">
       </mat-form-field>
       <mat-form-field appearance="standard">
         <mat-label>Contact Number</mat-label>
         <input placeholder="0777777777" matInput type="tel" formControlName="contactNumber">
       </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Destination</mat-label>
+        <mat-select formControlName="destinationId">
+          <mat-option *ngFor="let destination of destinations" [value]="destination.id">
+            {{destination.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </form>
   </mat-card-content>
   <mat-card-actions>
     <button mat-button (click)="onSubmit()">SAVE</button>
-    <button mat-button>DELETE</button>
+    <button mat-button (click)="onDelete()" *ngIf="form.controls['id'].value">DELETE</button>
   </mat-card-actions>
 </mat-card>

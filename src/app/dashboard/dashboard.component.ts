@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ClientsService} from "./clients/clients.service";
 import {OffersService} from "./offers/offers.service";
 
@@ -12,19 +12,44 @@ export class DashboardComponent implements OnInit {
   selectedClient: any = undefined;
   selectedOffer: any = undefined;
 
-  constructor(private clientsService: ClientsService, private offersService: OffersService) { }
+  constructor(private clientsService: ClientsService, private offersService: OffersService) {
+  }
 
   ngOnInit(): void {
   }
 
   onReceiveClient(id: number) {
-    this.selectedClient = this.clientsService.getById(id);
+    // this.selectedClient = this.clientsService.getById(id);
+    this.clientsService.getById(id).subscribe((response: any) => {
+        this.selectedClient = {
+          id: response.id,
+          firstName: response.firstName,
+          lastName: response.lastName,
+          username: response.username,
+          email: response.email,
+          retypePassword: '',
+          password: ''
+        };
+      },
+      (error) => {
+        console.log('error onReceiveClient');
+      });
     console.log(this.selectedClient);
   }
 
   onReceiveOffer(id: number) {
-    this.selectedOffer = this.offersService.getById(id);
-    console.log(this.selectedOffer);
+    // this.selectedOffer = this.offersService.getById(id);
+    // console.log(this.selectedOffer);
+
+    this.offersService.getById(id).subscribe((response: any) => {
+      console.log('response');
+      console.log(response);
+      this.selectedOffer = response;
+      },
+      (error) => {
+        console.log('error');
+        console.log(error);
+      });
   }
 
 
