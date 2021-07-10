@@ -1,0 +1,19 @@
+<p>
+  <mat-toolbar color="primary">
+    <span>Travel agency</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button (click)="onDashboard()" *ngIf="currentUser">
+      <mat-icon>dashboard</mat-icon>
+    </button>
+    <button mat-icon-button *ngIf="currentUser" (click)="onMyAccount()">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <button mat-icon-button (click)="onHome()" *ngIf="currentUser">
+      <mat-icon>home</mat-icon>
+    </button>
+    <button mat-icon-button (click)="onAuth()">
+      <mat-icon *ngIf="currentUser">logout</mat-icon>
+      <mat-icon *ngIf="!currentUser">login</mat-icon>
+    </button>
+  </mat-toolbar>
+</p>

@@ -18,7 +18,7 @@ export class PreviewOfferComponent implements OnInit {
   }
 
   onBuy():void {
-    let dialogRef = this.dialog.open(BuyOfferComponent, {height:'300px', width:'400px', data: {offer: this.offer} });
+    let dialogRef = this.dialog.open(BuyOfferComponent, { data: {offer: this.offer} });
   }
 
 }

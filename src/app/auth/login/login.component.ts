@@ -1,8 +1,8 @@
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { UserService } from 'src/app/user/user.service';
-import { Router } from '@angular/router';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../auth.service';
+import {UserService} from 'src/app/user/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,34 +14,32 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private userService: UserService, private router: Router) {
     this.loginForm = formBuilder.group({
-      email: ['', Validators.email],
-      password: ['', Validators.minLength(6)],
+      email: ['mariuspop@gmail.com', Validators.email],
+      password: ['123456', Validators.minLength(6)],
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
   onLogin(): void {
 
-    this.router.navigate(["/", "dashboard"])
+    // this.router.navigate(["/", "dashboard"])
     // console.log(this.loginForm.value);
-    // this.authService.login(this.loginForm.value).subscribe((response: any) => {
-    //   console.log(response);
+    this.authService.login(this.loginForm.value).subscribe((response: any) => {
+        console.log(response);
 
-    //   if (response.status == 200) {
-    //     let user = response.result.user;
-    //     user.token = response.result.token;
-    //     this.userService.setUser(user);
+        let user = response;
+        this.userService.setUser(user);
 
-    //     this.router.navigate(["/", "dashboard"])
-    //   } else {
-    //     alert(response.error);
-    //   }
+        this.router.navigate(["/", "my-account"])
 
-    // }, (error) => {
-    //   console.log(error);
-    // }
-    // );
+
+      }, (error) => {
+        console.log(error);
+        alert(error.error);
+      }
+    );
 
   }
 }

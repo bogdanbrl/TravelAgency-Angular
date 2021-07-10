@@ -14,12 +14,12 @@ export class MyAccountComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private userService: UserService) {
     this.form = formBuilder.group({
       id: [this.userService.getUser().id],
+      username: [this.userService.getUser().username, Validators.minLength(3)],
       firstName: [this.userService.getUser().firstName, Validators.minLength(3)],
       lastName: [this.userService.getUser().lastName, Validators.minLength(3)],
       email: [this.userService.getUser().email, Validators.email],
       password: ['', Validators.minLength(6)],
       retypePassword: ['', Validators.minLength(6)],
-      phone: [this.userService.getUser().phone, Validators.minLength(10)],
     });
 
   }
@@ -30,10 +30,27 @@ export class MyAccountComponent implements OnInit {
   onSubmit(): void {
     console.log(this.form.value);
     if (this.form.valid) {
-      //TODO: connect with the REST API
+      this.userService.updateAccount(this.form.value).subscribe((response: any) => {
+          console.log(response);
+          this.userService.setUser(response);
+        },
+        (error) => {
+          console.log('error');
+          console.log(error);
+        });
     } else {
-      //TODO: inform user about errors
+      alert("Invalid form");
     }
+  }
+
+  deleteAccount() {
+    this.userService.deleteAccount().subscribe((response: any) => {
+        this.userService.logOut();
+      },
+      (error) => {
+        console.log('error');
+        console.log(error);
+      });
   }
 
 }

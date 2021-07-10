@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', }), responseType: 'text' as 'json' };
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,7 @@ export class AuthService {
   }
 
   public register(data: any){
-    return this.httpClient.post("http://localhost:8080/auth/register", data);
+    return this.httpClient.post("http://localhost:8080/auth/register", data, httpOptions);
   }
 
   public forgotPassword(data: any){

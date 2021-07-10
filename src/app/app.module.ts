@@ -31,6 +31,9 @@ import { ListCountriesComponent } from './dashboard/destinations/list-countries/
 import { CountryPreviewComponent } from './dashboard/destinations/country-preview/country-preview.component';
 import { BuyOfferComponent } from './buy-offer/buy-offer.component';
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
+import { HomeComponent } from './home/home.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { NavigationToolbarComponent } from './navigation-toolbar/navigation-toolbar.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,9 @@ import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dia
     AddEditDeleteCountryComponent,
     ListCountriesComponent,
     CountryPreviewComponent,
-    BuyOfferComponent
+    BuyOfferComponent,
+    HomeComponent,
+    NavigationToolbarComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +73,7 @@ import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dia
     MatSelectModule,
     MatOptionModule,
     MatDialogModule,
+    MatToolbarModule,
   ],
   entryComponents: [BuyOfferComponent],
   providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],

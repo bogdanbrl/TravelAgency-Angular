@@ -1,5 +1,7 @@
 <mat-card class="card-container" *ngIf="data">
 
+  <img [src]="data.offer.imageUrl">
+
   <mat-card-header>
     <mat-card-title>{{ data.offer.title }}</mat-card-title>
     <mat-card-subtitle>{{ data.offer.description }}</mat-card-subtitle>
@@ -7,11 +9,11 @@
 
   <mat-card-content>
     <p>
-      {{ data.offer.pricePerNight }}
+      Price per night: {{ data.offer.pricePerNight }} euro!
     </p>
     <mat-form-field>
       <mat-label>
-        Client
+        Select client
       </mat-label>
       <mat-select [(ngModel)]="selectedUserId">
         <mat-option *ngFor="let client of users" [value]="client.id">
@@ -19,7 +21,9 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-button (click)="confirmOffer()">Confirm offer</button>
+    <br>
+    <button mat-button (click)="confirmOffer()" *ngIf="userService.getUser()">Confirm offer</button>
+    <button mat-button (click)="login()" *ngIf="!userService.getUser()">login</button>
   </mat-card-content>
 
 </mat-card>

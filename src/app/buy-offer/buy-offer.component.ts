@@ -4,6 +4,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ClientModel} from "../models/client-model";
 import {ClientsService} from "../dashboard/clients/clients.service";
 import {OffersService} from "../dashboard/offers/offers.service";
+import {Router} from "@angular/router";
+import {UserService} from "../user/user.service";
 
 @Component({
   selector: 'app-buy-offer',
@@ -18,7 +20,9 @@ export class BuyOfferComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: { offer: OfferModel },
               private clientsService: ClientsService,
               private offerService: OffersService,
-              public dialogRef: MatDialogRef<BuyOfferComponent>) {
+              public dialogRef: MatDialogRef<BuyOfferComponent>,
+              private router: Router,
+              public userService: UserService) {
     console.log(data);
   }
 
@@ -54,4 +58,8 @@ export class BuyOfferComponent implements OnInit {
     console.log(this.selectedUserId);
   }
 
+  login() {
+    this.dialogRef.close();
+    this.router.navigateByUrl('/auth');
+  }
 }

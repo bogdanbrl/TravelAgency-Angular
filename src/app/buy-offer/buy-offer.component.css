@@ -1,3 +1,7 @@
 .card-container {
-  margin: 16px;
+
+}
+
+mat-container-dialog {
+  padding: 0px;
 }
